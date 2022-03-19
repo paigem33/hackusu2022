@@ -1,3 +1,11 @@
+import domino
+import pygame
+import pathlib
+import sys
+directory = pathlib.Path(__file__).resolve()
+sys.path.append(str(directory.parent.parent))
+from client import image
+
 class Track:
     def __init__(self):
         self.__dominoes = []
@@ -18,5 +26,13 @@ class Track:
         self.__is_public = public
 
     def draw(self):
-        max_size =
-
+        max_size = self.__dominoes[len(self.__dominoes)].get_size()
+        width = 0
+        height = 0
+        for domino in self.__dominoes:
+            height += domino.get_size()[1]
+            width = domino.get_size()[0]
+        if max_size == 0:
+            return width == 0
+        if domino.is_double() == True:
+            
