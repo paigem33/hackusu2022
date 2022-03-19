@@ -57,6 +57,8 @@ class Scrollable:
             rect (pygame.Rect) Rect of the surface
         """
         self.__draw_list.append((surf, rect))
+        print(rect)
+
 
     def draw(self, screen):
         """

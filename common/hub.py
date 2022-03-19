@@ -31,7 +31,7 @@ class Hub:
         """
         scrollable.blit_item(self.__hub_image.get_surface(), rect)
         # TODO: draw starting domino into hub
-        self.draw_tracks(scrollable, rect) # do the same thing as line 32
+        #self.draw_tracks(scrollable, rect) # do the same thing as line 32
 
     def get_starting_domino(self):
         """
