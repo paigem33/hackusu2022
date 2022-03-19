@@ -23,15 +23,15 @@ class Hub:
         """
         return self.__tracks[index]
 
-    def draw(self, screen, rect):
+    def draw(self, scrollable, rect):
         """
         Draws the hub image to the screen
         Parameters:
             screen (pygame.Surface) Surface to draw to
         """
-        screen.blit(self.__hub_image.get_surface(), rect)
+        scrollable.blit_item(self.__hub_image.get_surface(), rect)
         # TODO: draw starting domino into hub
-        self.draw_tracks(screen, rect)
+        self.draw_tracks(scrollable, rect) # do the same thing as line 32
 
     def get_starting_domino(self):
         """
@@ -45,7 +45,7 @@ class Hub:
         """
         pass
 
-    def draw_tracks(self, screen, rect):
+    def draw_tracks(self, scrollable, rect):
 
         rotations = [] # fill with the rotation needed for each track starting at 1
         positions = [] # take the rect and get the needed adjustments for each track starting at 1
@@ -55,6 +55,6 @@ class Hub:
         item = 0
         for track in self.__tracks:
             track.rotate(rotations[item])
-            screen.blit(track, positions[item])
+            scrollable.blit_item(self.__hub_image.get_surface(), rect)
 
         
