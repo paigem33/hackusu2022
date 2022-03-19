@@ -16,7 +16,7 @@ class Boneyard:
         """
         Returns the last domino in the list
         """
-        return self.__dominos[-1]
+        return self.__dominos.pop()
         
         
 
