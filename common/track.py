@@ -30,9 +30,26 @@ class Track:
         width = 0
         height = 0
         for domino in self.__dominoes:
-            height += domino.get_size()[1]
-            width = domino.get_size()[0]
+            if domino.is_double() == False:
+                height += domino.get_size()[1]
+                width = domino.get_size()[0]
+            elif domino.is_double() == True:
+                width += domino.get_size()[1]
+                height = domino.get_size()[0]
         if max_size == 0:
             return width == 0
-        if domino.is_double() == True:
-            
+        size = width,height
+        color = (0,0,0,0)
+        surface = pygame.Surface(size, color)
+        y = 0
+        for domino in self.__dominoes:
+            image = domino.get_image()
+            if domino.isdouble() == False:
+                x = height/3
+            elif domino.isdouble() == True:
+                x = 0
+            image.blit(surface,(x,y))
+            y += height
+
+
+        return surface
