@@ -11,7 +11,8 @@ directory = pathlib.Path(__file__).resolve()
 sys.path.append(str(directory.parent.parent))
 
 from common import hub
-
+from common import track
+from common import domino
 
 class Game:
     """
@@ -26,9 +27,10 @@ class Game:
         self.__fps_counter = fps.FpsCounter()
         self.__scroll = Scrollable(self.__window.get_screen_size(), (0, 0))
         self.__angle = 0
-        self.__hub = hub.Hub()
-
-        # private hub, call draw on hub in draw method
+        self.__tracks = [] 
+        self.__tracks.append(track.Track()) # will loop through and add based on number of players
+        
+        self.__hub = hub.Hub(self.__tracks, ASSET_BANK.get_asset("hub.png"), domino.Domino(12, 12, ASSET_BANK.get_asset("1.png"))) # needs list of tracks, hub image, starting_domino
 
     def __events(self):
         """
