@@ -46,15 +46,17 @@ class Hub:
         pass
 
     def draw_tracks(self, scrollable, rect):
+        """
+        draws the tracks in the correct spot on thw hub
+        """
 
-        rotations = [] # fill with the rotation needed for each track starting at 1
-        positions = [] # take the rect and get the needed adjustments for each track starting at 1
-
-        positions.append()
+        rotations = [10] # fill with the rotation needed for each track starting at 1
+        positions = [(12,12)] # take the rect and get the needed adjustments for each track starting at 1
 
         item = 0
         for track in self.__tracks:
             track.rotate(rotations[item])
-            scrollable.blit_item(self.__hub_image.get_surface(), rect)
+            scrollable.blit_item(self.__hub_image.get_surface(), positions[item])
+            item += 1
 
         
