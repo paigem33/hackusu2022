@@ -1,5 +1,5 @@
 from image import Image
-
+import os
 
 class AssetBank:
     """
@@ -28,3 +28,9 @@ class AssetBank:
 
 
 ASSET_BANK = AssetBank()
+
+
+def init_assets():
+    for file in os.listdir("assets"):
+        ASSET_BANK.save_asset(file, Image("assets/" + file))
+

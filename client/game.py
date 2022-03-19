@@ -6,6 +6,7 @@ from asset_bank import ASSET_BANK
 from window import Window
 from scrollable import Scrollable
 from time import time
+from client_net import ClientNet
 
 directory = pathlib.Path(__file__).resolve()
 sys.path.append(str(directory.parent.parent))
@@ -18,6 +19,7 @@ class Game:
     """
     Encapsulates all the game data
     """
+
     def __init__(self):
         """
         Creates a new window and objects in the window
@@ -31,6 +33,7 @@ class Game:
         self.__tracks.append(track.Track()) # will loop through and add based on number of players
         
         self.__hub = hub.Hub(self.__tracks, ASSET_BANK.get_asset("hub.png"), domino.Domino(12, 12, ASSET_BANK.get_asset("1.png"))) # needs list of tracks, hub image, starting_domino
+        self.__net = ClientNet()
 
     def __events(self):
         """
@@ -47,6 +50,7 @@ class Game:
         """
         self.__fps_counter.update()
         self.__angle += 1
+        self.__net.update()
 
     def __draw(self):
         """
