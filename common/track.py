@@ -10,21 +10,31 @@ class Track:
     def __init__(self):
         self.__dominoes = []
         self.__is_public = False
-
+    """
+    creates a list of dominoes
+    """
     def push(self, domino):
         self.__dominoes.append(domino)
-
+    """
+    push will append the dominoes to the list of dominoes
+    """
     def get_all_except_end(self):
         output = self.__dominoes[:-1]
         self.__dominoes = self.__dominoes[-1:]
         return output
-
+    """
+    This will get rid of the last domino in the list.
+    """
     def get_public(self):
         return self.__is_public
-
+    """
+    This will determine if the train is public
+    """
     def set_public(self, public):
         self.__is_public = public
-
+    """
+    This will change self.__is_public to True or False.
+    """
     def draw(self):
         max_size = self.__dominoes[len(self.__dominoes)].get_size()
         width = 0
@@ -50,6 +60,7 @@ class Track:
                 x = 0
             image.blit(surface,(x,y))
             y += height
-
-
-        return surface
+    """
+    This will draw the dominoes to the surface we created and make an appropriately sized surface and appropriately positioned 
+    domino on the surface.
+    """
