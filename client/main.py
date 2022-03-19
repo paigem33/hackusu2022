@@ -6,7 +6,7 @@ from game import Game
 def main():
     pygame.init()
     game = Game()
-    init_assets()
+
     game.run()
     pygame.quit()
 

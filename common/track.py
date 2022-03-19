@@ -1,4 +1,4 @@
-import domino
+#import domino
 import pygame
 import pathlib
 import sys
