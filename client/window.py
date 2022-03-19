@@ -15,7 +15,6 @@ class Window:
             fullscreen (bool) Whether to be fullscreen
             vsync (bool) Whether to use vsync
         """
-        pygame.init()
         if fullscreen:
             flags = pygame.FULLSCREEN
         else:

@@ -4,6 +4,7 @@ directory = pathlib.Path(__file__).resolve()
 sys.path.append(str(directory.parent.parent))
 from client import image
 
+
 class Domino:
     def __init__(self, a, b, image):
         self.__a = a
