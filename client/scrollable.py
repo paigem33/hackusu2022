@@ -77,8 +77,8 @@ class Scrollable:
             item_size = (rect[2] * self.__zoom, rect[3] * self.__zoom)
             if item_size[0] < 0 or item_size[1] < 0:
                 continue
-            surf = pygame.transform.scale(surf, item_size)
-            display.blit(surf, item_pos)
+            surf = surf.resize(item_size)
+            display.blit(surf.get_surface(), item_pos)
         self.__draw_list = []
         screen.blit(display, self.__pos)
 

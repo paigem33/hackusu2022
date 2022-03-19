@@ -6,28 +6,31 @@ class Image:
     Abstraction over a surface for higher level actions.
     """
 
-    def __init__(self, file):
+    def __init__(self, image):
         """
         Create a new image from a file path
         Parameters:
-            file (string) Path of the image to open
+            image (string or pygame.Surface) Path of the image to open or a Surface
         """
-        self.__image = pygame.image.load(file)
-        self.__image = self.__image.convert_alpha()
-        self.__size = self.__image.get_size()
+        if isinstance(image, pygame.Surface):
+            self.__image = image
+            self.__size = self.__image.get_size()
+        else:
+            self.__image = pygame.image.load(image)
+            self.__image = self.__image.convert_alpha()
+            self.__size = self.__image.get_size()
 
     def duplicate(self):
         """
         Returns a copy of this image
         """
-        return pygame.Surface.copy(self.__image)
+        return Image(pygame.Surface.copy(self.__image))
 
     def rotate(self, angle):
         """
         Rotates the image around (0, 0)
         """
-        self.__image = pygame.transform.rotate(self.__image, angle)
-        self.__size = self.__image.get_size()
+        return Image(pygame.transform.rotate(self.__image, angle))
 
     def rotate_pivot(self, pos, origin, angle):
         """
@@ -51,7 +54,7 @@ class Image:
         rotated_image = pygame.transform.rotate(self.__image, angle)
         rotated_image_rect = rotated_image.get_rect(center=rotated_image_center)
 
-        return rotated_image, rotated_image_rect
+        return Image(rotated_image), rotated_image_rect
 
     def rotate_center(self, pos, angle):
         """
@@ -69,8 +72,7 @@ class Image:
         Parameters:
             size (Vector) New size of the image
         """
-        self.__image = pygame.transform.scale(self.__image, size)
-        self.__size = self.__image.get_size()
+        return Image(pygame.transform.scale(self.__image, size))
 
     def resize_ratio(self, x_ratio, y_ratio):
         """
@@ -80,17 +82,16 @@ class Image:
             y_ratio (float) Ratio to scale the y size by
         """
         size = (self.__size[0] * x_ratio, self.__size[1] * y_ratio)
-        self.resize(size)
+        return self.resize(size)
 
     def flip(self, flip_x, flip_y):
         """
-        Flips an image
+        Flips the image and returns the flipped version
         Parameters:
             flip_x (bool) To flip the x or not
             flip_y (bool) To flip the y or not
         """
-        self.__image = pygame.transform.flip(self.__image, flip_x, flip_y)
-        self.__size = self.__image.get_size()
+        return Image(pygame.transform.flip(self.__image, flip_x, flip_y))
 
     def blit(self, screen, rect):
         """
