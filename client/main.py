@@ -7,14 +7,15 @@ from window import Window
 from image import Image
 from os import getcwd
 from scrollable import Scrollable
+from asset_bank import ASSET_BANK
 
 
 def main():
-    print(getcwd())
-    window = Window([800, 800], "Mexican Train", False, False)
+    window = Window([900, 900], "Mexican Train", False, False)
+    load_assets()
     running = True
     fps_counter = fps.FpsCounter()
-    image = Image(open(getcwd() + "/assets/Light theme/1.png"))
+    image = ASSET_BANK.get_asset("1.png")
     angle = 0
     scroll = Scrollable(window.get_screen_size(), (0, 0))
     while running:
@@ -36,6 +37,10 @@ def main():
         fps.limit_fps(start_time, 60)
         #print(fps_counter.get_fps())
     pygame.quit()
+
+def load_assets():
+    ASSET_BANK.save_asset("1.png", Image("assets/Light theme/1.png"))
+    ASSET_BANK.save_asset("hub.png", Image("assets/Mexican_Train_Game_Station.png"))
 
 
 if __name__ == "__main__":

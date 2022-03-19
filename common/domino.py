@@ -1,3 +1,5 @@
+
+
 class Domino:
     def __init__(self, a, b, image):
         self.__a = a
