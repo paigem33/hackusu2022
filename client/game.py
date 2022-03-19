@@ -6,6 +6,7 @@ from asset_bank import ASSET_BANK
 from window import Window
 from scrollable import Scrollable
 from time import time
+from client_net import ClientNet
 
 directory = pathlib.Path(__file__).resolve()
 sys.path.append(str(directory.parent.parent))
@@ -17,6 +18,7 @@ class Game:
     """
     Encapsulates all the game data
     """
+
     def __init__(self):
         """
         Creates a new window and objects in the window
@@ -26,6 +28,7 @@ class Game:
         self.__fps_counter = fps.FpsCounter()
         self.__scroll = Scrollable(self.__window.get_screen_size(), (0, 0))
         self.__angle = 0
+        self.__net = ClientNet()
         self.__hub = hub.Hub()
 
         # private hub, call draw on hub in draw method
@@ -45,6 +48,7 @@ class Game:
         """
         self.__fps_counter.update()
         self.__angle += 1
+        self.__net.update()
 
     def __draw(self):
         """

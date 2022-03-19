@@ -1,5 +1,10 @@
+from time import sleep
+from server import Server
+
+
 def main():
-    pass
+    server = Server()
+    server.run()
 
 
 if __name__ == "__main__":
