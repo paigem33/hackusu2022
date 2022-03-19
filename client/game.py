@@ -1,3 +1,5 @@
+import pathlib
+import sys
 import pygame
 import fps
 from asset_bank import ASSET_BANK
@@ -5,6 +7,11 @@ from window import Window
 from scrollable import Scrollable
 from time import time
 from client_net import ClientNet
+
+directory = pathlib.Path(__file__).resolve()
+sys.path.append(str(directory.parent.parent))
+
+from common import hub
 
 
 class Game:
@@ -22,6 +29,9 @@ class Game:
         self.__scroll = Scrollable(self.__window.get_screen_size(), (0, 0))
         self.__angle = 0
         self.__net = ClientNet()
+        self.__hub = hub.Hub()
+
+        # private hub, call draw on hub in draw method
 
     def __events(self):
         """
@@ -48,7 +58,8 @@ class Game:
         screen.fill((255, 255, 255))
         image = ASSET_BANK.get_asset("1.png")
         rotated_image, bounding_box = image.rotate_center((100, 100), self.__angle)
-        self.__scroll.blit_item(rotated_image, bounding_box)
+        self.__hub.draw(self.__scroll)
+        # self.__scroll.blit_item(rotated_image, bounding_box)
         self.__scroll.draw(screen)
         self.__window.display()
 
