@@ -1,11 +1,13 @@
-Train Corp Aholics
+# Train Corp Aholics
 
 Have a hand of dominos from the start.
 Double twelve set.
 Initial start for double twelve:
- * 2-4: 15 dominoes
- * 5-6: 12 dominoes
- * 7-8: 10 dominoes
+
+- 2-4: 15 dominoes
+- 5-6: 12 dominoes
+- 7-8: 10 dominoes
+
 A game round is where you comeplete one game using a starting double piece. The first double is the double twelve.
 A train can be public or private. A private train mean only the owner can place dominoes on the train. If the train is public, any player can place a domino on the train.
 One round in the game consists of a player placing a domino on either thier train or another player's train who's is public. If they place a domino on someone else's train, they have to make their own train public. They also have to go public if they cannot play.
